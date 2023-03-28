@@ -7,3 +7,12 @@ D:\Current\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.
 D:\Current\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.csproj.CoreCompileInputs.cache
 D:\Current\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.exe
 D:\Current\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.pdb
+D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\CSharpApplication\bin\Release\CSharpApplication.exe.config
+D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\CSharpApplication\bin\Release\CSharpApplication.exe
+D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\CSharpApplication\bin\Release\CSharpApplication.pdb
+D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.csproj.AssemblyReference.cache
+D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.Properties.Resources.resources
+D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.csproj.GenerateResource.cache
+D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.csproj.CoreCompileInputs.cache
+D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.exe
+D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\CSharpApplication\obj\Release\CSharpApplication.pdb

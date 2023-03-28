@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="Leventure_DevelopKey">
+    <qresource prefix="/Leventure_DevelopKey">
+        <file>微信图片_20230328111414.jpg</file>
     </qresource>
 </RCC>

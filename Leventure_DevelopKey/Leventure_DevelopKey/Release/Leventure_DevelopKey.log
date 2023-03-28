@@ -1,5 +1,9 @@
-﻿  moc Leventure_DevelopKey.h
+﻿  uic Leventure_DevelopKey.ui
+  rcc Leventure_DevelopKey.qrc
+  moc Leventure_DevelopKey.h
   Leventure_DevelopKey.cpp
   main.cpp
+  qrc_Leventure_DevelopKey.cpp
   moc_Leventure_DevelopKey.cpp
-  Leventure_DevelopKey.vcxproj -> D:\Current\Leventure_DevelopKey\Release\Leventure_DevelopKey.exe
+qtmain.lib(qtmain_win.obj) : warning LNK4099: 未找到 PDB“”(使用“qtmain.lib(qtmain_win.obj)”或在“”中寻找)；正在链接对象，如同没有调试信息一样
+  Leventure_DevelopKey.vcxproj -> D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\Release\Leventure_DevelopKey.exe

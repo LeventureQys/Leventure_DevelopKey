@@ -14,6 +14,7 @@
 #include "qmessagebox.h"
 #include "qfuture.h"
 #include <QtConcurrent>
+#include "qnetworkinterface.h"
 #ifndef PROCESS_NAME
 #define PROCESS_NAME (0x00002000L | 0x00001000L)
 #endif
@@ -37,13 +38,17 @@ public:
         static  Leventure_DevelopKey* instance = new  Leventure_DevelopKey();
         return instance;
     }
-
-
+    //默认的初始化ip
+    QString str_default_ip_address = "";
+    QString str_default_netmask = "";
+    QString str_default_device_name = "";
+    QString str_defaut_gateway = "";
     void InsertWindowsTitle(QString title);
     HWND findwindowByTitle(const wchar_t* windowTitle);
 
     void InitProTitle(char* argv[]);
 
+    bool bln_netchanged = false;
 signals:
     void Sig_Titles(QString title);
 private slots:
@@ -53,6 +58,8 @@ private slots:
     void on_rabt_DeveloperMode_clicked();
     void on_rabt_InfoMode_clicked();
     void on_rabt_CompabilityModes_clicked();
+    void on_btn_ChangeNetwork_clicked();
+    void on_btn_netrecovery_clicked();
     void on_rabt_TestMode_clicked();
 private:
 
@@ -75,6 +82,7 @@ private:
     void InitFindWindows();
     void Add(QString strValue);
 
+    void ChangedIpConfig(QString str_device,QString str_ip, QString str_netmask, QString str_gateway);
     Q_DISABLE_COPY(Leventure_DevelopKey)
 
 };
