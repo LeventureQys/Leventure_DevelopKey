@@ -1,4 +1,5 @@
-﻿  uic Leventure_DevelopKey.ui
+﻿  Reading Qt configuration (D:/DevTools/Qt_5.14/5.14.2/msvc2017/bin/qmake)
+  uic Leventure_DevelopKey.ui
   rcc Leventure_DevelopKey.qrc
   moc Leventure_DevelopKey.h
   Leventure_DevelopKey.cpp

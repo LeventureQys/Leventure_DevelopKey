@@ -326,15 +326,24 @@ void Leventure_DevelopKey::on_btn_netrecovery_clicked()
     this->ui.line_net_10->setEnabled(true);
     this->ui.line_net_11->setEnabled(true);
     this->ui.line_net_12->setEnabled(true);
-    this->ChangedIpConfig(
+    /*this->ChangedIpConfig(
         this->str_default_device_name,
         this->str_default_ip_address,
         this->str_default_netmask,
-        this->str_defaut_gateway);
+        this->str_defaut_gateway);*/
 
+    QString command = "netsh interface ip set address name = " + this->str_default_device_name + " source=dhcp";
+    QString adddns = "netsh interface ip set dns name = " + this->str_default_device_name + " source=dhcp";
+    
     this->bln_netchanged = false;
 
+    QProcess* process = new QProcess();
 
+    process->start(command);
+    process->waitForFinished();
+
+    process->start(adddns);
+    process->waitForFinished();
     this->ui.btn_ChangeNetwork->setCheckable(true);
 
     this->ui.btn_netrecovery->setCheckable(false);
