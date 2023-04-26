@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -24,6 +25,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -85,6 +87,16 @@ public:
     QLabel *label_22;
     QLabel *label_12;
     QPushButton *btn_netrecovery;
+    QWidget *tab;
+    QPlainTextEdit *text_json;
+    QLabel *label_15;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QLabel *label_14;
+    QHBoxLayout *horizontalLayout;
+    QLineEdit *line_json_file;
+    QPushButton *btn_json_check;
+    QPushButton *btn_json_analyse;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -93,7 +105,7 @@ public:
     {
         if (Leventure_DevelopKeyClass->objectName().isEmpty())
             Leventure_DevelopKeyClass->setObjectName(QString::fromUtf8("Leventure_DevelopKeyClass"));
-        Leventure_DevelopKeyClass->resize(648, 554);
+        Leventure_DevelopKeyClass->resize(666, 559);
         centralWidget = new QWidget(Leventure_DevelopKeyClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         label = new QLabel(centralWidget);
@@ -260,10 +272,53 @@ public:
         btn_netrecovery->setObjectName(QString::fromUtf8("btn_netrecovery"));
         btn_netrecovery->setGeometry(QRect(210, 70, 75, 23));
         tabWidget->addTab(tab_4, QString());
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        text_json = new QPlainTextEdit(tab);
+        text_json->setObjectName(QString::fromUtf8("text_json"));
+        text_json->setGeometry(QRect(10, 140, 301, 221));
+        label_15 = new QLabel(tab);
+        label_15->setObjectName(QString::fromUtf8("label_15"));
+        label_15->setGeometry(QRect(20, 120, 54, 12));
+        widget = new QWidget(tab);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(10, 10, 301, 91));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        label_14 = new QLabel(widget);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+
+        verticalLayout->addWidget(label_14);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        line_json_file = new QLineEdit(widget);
+        line_json_file->setObjectName(QString::fromUtf8("line_json_file"));
+
+        horizontalLayout->addWidget(line_json_file);
+
+        btn_json_check = new QPushButton(widget);
+        btn_json_check->setObjectName(QString::fromUtf8("btn_json_check"));
+
+        horizontalLayout->addWidget(btn_json_check);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
+        btn_json_analyse = new QPushButton(widget);
+        btn_json_analyse->setObjectName(QString::fromUtf8("btn_json_analyse"));
+
+        verticalLayout->addWidget(btn_json_analyse);
+
+        tabWidget->addTab(tab, QString());
         Leventure_DevelopKeyClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Leventure_DevelopKeyClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 648, 23));
+        menuBar->setGeometry(QRect(0, 0, 666, 23));
         Leventure_DevelopKeyClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(Leventure_DevelopKeyClass);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -274,7 +329,7 @@ public:
 
         retranslateUi(Leventure_DevelopKeyClass);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(Leventure_DevelopKeyClass);
@@ -329,6 +384,11 @@ public:
         label_12->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\347\275\221\345\205\263", nullptr));
         btn_netrecovery->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\346\201\242\345\244\215\345\216\237\347\212\266", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("Leventure_DevelopKeyClass", "\347\275\221\347\273\234\345\267\245\345\205\267", nullptr));
+        label_15->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\347\273\223\346\236\234", nullptr));
+        label_14->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\350\276\223\345\205\245\346\226\207\344\273\266\344\275\215\347\275\256", nullptr));
+        btn_json_check->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\346\265\217\350\247\210..", nullptr));
+        btn_json_analyse->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\350\247\243\346\236\220", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("Leventure_DevelopKeyClass", "JSON\350\247\243\346\236\220", nullptr));
     } // retranslateUi
 
 };

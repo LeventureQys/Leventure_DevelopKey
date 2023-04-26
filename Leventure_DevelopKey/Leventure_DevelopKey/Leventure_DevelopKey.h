@@ -15,6 +15,8 @@
 #include "qfuture.h"
 #include <QtConcurrent>
 #include "qnetworkinterface.h"
+#include "QFileDialog.h"
+#include "qtextstream.h"
 #ifndef PROCESS_NAME
 #define PROCESS_NAME (0x00002000L | 0x00001000L)
 #endif
@@ -61,8 +63,12 @@ private slots:
     void on_btn_ChangeNetwork_clicked();
     void on_btn_netrecovery_clicked();
     void on_rabt_TestMode_clicked();
-private:
+    void on_btn_json_check_clicked();
+    void on_btn_json_analyse_clicked();
 
+
+private:
+    bool save_as_json(QList<QString>& jsonStr, QString fileName);
     char* ProcessName = Q_NULLPTR;
     char* p_last = NULL;
 

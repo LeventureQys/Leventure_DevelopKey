@@ -89,7 +89,7 @@ void Leventure_DevelopKey::on_btn_GetHwnd_clicked()
         return;
     }
 
-    wchar_t *cast = (wchar_t*)reinterpret_cast<const wchar_t*>(title.utf16());
+    wchar_t* cast = (wchar_t*)reinterpret_cast<const wchar_t*>(title.utf16());
 
     this->ProcessHWND = this->findwindowByTitle(cast);
     if (this->ProcessHWND == 0) {
@@ -104,7 +104,7 @@ void Leventure_DevelopKey::on_rabt_DeveloperMode_clicked()
 {
     HWND mainWindowHandler = (HWND)this->winId();
 
-    SetWindowText(mainWindowHandler,TEXT("Leventure_DeveloperMode"));
+    SetWindowText(mainWindowHandler, TEXT("Leventure_DeveloperMode"));
     this->setWindowTitle("Leventure_DeveloperMode");
     SetConsoleTitle(TEXT("Leventure_DeveloperMode"));
     HANDLE hProcess = GetCurrentProcess();
@@ -118,7 +118,7 @@ void Leventure_DevelopKey::on_rabt_DeveloperMode_clicked()
 void Leventure_DevelopKey::on_rabt_InfoMode_clicked()
 {
     HWND mainWindowHandler = (HWND)this->winId();
-    SetWindowText(mainWindowHandler,TEXT("Leventure_InfoMode"));
+    SetWindowText(mainWindowHandler, TEXT("Leventure_InfoMode"));
     this->setWindowTitle("Leventure_InfoMode");
     SetConsoleTitle(TEXT("Leventure_InfoMode"));
     HANDLE hProcess = GetCurrentProcess();
@@ -132,7 +132,7 @@ void Leventure_DevelopKey::on_rabt_InfoMode_clicked()
 void Leventure_DevelopKey::on_rabt_CompabilityModes_clicked()
 {
     HWND mainWindowHandler = (HWND)this->winId();
-    SetWindowText(mainWindowHandler,TEXT("Leventure_CompatibleMode"));
+    SetWindowText(mainWindowHandler, TEXT("Leventure_CompatibleMode"));
     this->setWindowTitle("Leventure_CompatibleMode");
     SetConsoleTitle(TEXT("Leventure_CompatibleMode"));
     HANDLE hProcess = GetCurrentProcess();
@@ -154,6 +154,84 @@ void Leventure_DevelopKey::on_rabt_TestMode_clicked()
     DWORD_PTR dwMaximumWorkingSetSize = (DWORD_PTR)-1;
     SetProcessWorkingSetSizeEx(hProcess, dwMinimumWorkingSetSize, dwMaximumWorkingSetSize, PROCESS_WORKING_SET_SIZE | PROCESS_NAME);
 
+}
+
+void Leventure_DevelopKey::on_btn_json_check_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(
+        this,
+        tr("open a file."),
+        "",
+        tr("text(*.txt);;video files(*.avi *.mp4 *.wmv);;All files(*.*)"));
+
+    if (fileName.isEmpty()) {
+        this->ui.text_json->appendPlainText("请正确地选择文件！");
+        return;
+    }
+    else {
+        this->ui.line_json_file->setText(fileName);
+        return;
+    }
+}
+
+void Leventure_DevelopKey::on_btn_json_analyse_clicked()
+{
+    QString fileName = this->ui.line_json_file->text();
+    if (fileName.isEmpty()) {
+        this->ui.text_json->appendPlainText("请先选择文件!");
+        return;
+    }
+    QFile file(fileName);
+    if (!file.exists()) {
+        this->ui.text_json->appendPlainText("文件不存在！");
+        return;
+    }
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text )) {
+        this->ui.text_json->appendPlainText("文件打开失败");
+        return;
+    }
+    QFileInfo fileinfo(file);
+    QString new_file_name = fileinfo.baseName() + "_analyse.txt";
+    QString new_file_path = fileinfo.path() + "/" + new_file_name;
+
+
+    QTextStream stream(&file);
+
+    //qDebug() << stream.readAll();;
+    //QByteArray jsonString = stream.readAll();
+    QString jsonString = QString(stream.readAll());
+    QList<QString> json_list = jsonString.split(';');
+    this->save_as_json(json_list, new_file_path);
+
+}
+
+bool Leventure_DevelopKey::save_as_json(QList<QString>& jsonlist, QString fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Append))
+        return false;
+
+    QTextStream stream(&file);
+
+    for (QString jsonStr : jsonlist) {
+        QJsonParseError error;
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonStr.toUtf8(), &error);
+
+        if (jsonDoc.isNull() || !jsonDoc.isObject())
+        {
+            this->ui.text_json->appendHtml("jsonDoc error or end");
+            file.close();
+            return false;
+        }
+        QJsonObject jsonObj = jsonDoc.object();
+        QString insert = QString::number(jsonObj.value("Mileage").toDouble(),'g',12) + QString("  ") + jsonObj.value("Time").toString();
+        this->ui.text_json->appendPlainText(insert);
+        stream << QString(insert) << endl;
+    }
+    file.close();
+
+    this->ui.text_json->appendPlainText("文件已保存至:" + fileName);
+    return true;
 }
 
 void Leventure_DevelopKey::SetTitleName(const char* name)
