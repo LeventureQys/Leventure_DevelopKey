@@ -57,9 +57,37 @@ Leventure_DevelopKey::Leventure_DevelopKey(QWidget* parent)
         }
     }
 
+    this->memory = new QSharedMemory("Leventure's_Software");
+    //默认开发者模式
+    
+    this->SetSharedMemory("DeveloperMode");
 
 }
 
+void Leventure_DevelopKey::SetSharedMemory(QString insert)
+{
+    if (!this->memory->isAttached()) {
+        qDebug() << "Memory not attach yet";
+    }
+    qDebug() << insert;
+    // create new shared memory
+    int size = insert.toUtf8().length();   // ensure the shared memory is large enough to hold the string and the ending '\0' symbol
+    if (!this->memory->create(size)) {
+        qDebug() << "Failed to create shared memory: " << this->memory->errorString();
+        return;
+    }
+
+    // copy data to the shared memory
+    this->memory->lock();
+    char* to = static_cast<char*>(this->memory->data());
+
+    //这一块内存需要保存，不然这个中间的这个指针就会被编译器优化了
+    QByteArray bta = insert.toUtf8();
+    const char* from = bta.constData();
+
+    memcpy(to, from, size);
+    this->memory->unlock();
+}
 Leventure_DevelopKey::~Leventure_DevelopKey()
 {}
 
@@ -113,6 +141,7 @@ void Leventure_DevelopKey::on_rabt_DeveloperMode_clicked()
     SetProcessWorkingSetSizeEx(hProcess, dwMinimumWorkingSetSize, dwMaximumWorkingSetSize, PROCESS_WORKING_SET_SIZE | PROCESS_NAME);
 
     //this->SetTitleName("Leventure_DeveloperMode");
+    this->SetSharedMemory("DeveloperMode");
 }
 
 void Leventure_DevelopKey::on_rabt_InfoMode_clicked()
@@ -127,6 +156,7 @@ void Leventure_DevelopKey::on_rabt_InfoMode_clicked()
     SetProcessWorkingSetSizeEx(hProcess, dwMinimumWorkingSetSize, dwMaximumWorkingSetSize, PROCESS_WORKING_SET_SIZE | PROCESS_NAME);
 
     //this->SetTitleName("Leventure_InfoMode");
+    this->SetSharedMemory("InfoMode");
 }
 
 void Leventure_DevelopKey::on_rabt_CompabilityModes_clicked()
@@ -139,7 +169,7 @@ void Leventure_DevelopKey::on_rabt_CompabilityModes_clicked()
     DWORD_PTR dwMinimumWorkingSetSize = 0;
     DWORD_PTR dwMaximumWorkingSetSize = (DWORD_PTR)-1;
     SetProcessWorkingSetSizeEx(hProcess, dwMinimumWorkingSetSize, dwMaximumWorkingSetSize, PROCESS_WORKING_SET_SIZE | PROCESS_NAME);
-
+    this->SetSharedMemory("CompatibleMode");
     //this->SetTitleName("Leventure_CompatibleMode");
 }
 
@@ -153,7 +183,7 @@ void Leventure_DevelopKey::on_rabt_TestMode_clicked()
     DWORD_PTR dwMinimumWorkingSetSize = 0;
     DWORD_PTR dwMaximumWorkingSetSize = (DWORD_PTR)-1;
     SetProcessWorkingSetSizeEx(hProcess, dwMinimumWorkingSetSize, dwMaximumWorkingSetSize, PROCESS_WORKING_SET_SIZE | PROCESS_NAME);
-
+    this->SetSharedMemory("TestMode");
 }
 
 void Leventure_DevelopKey::SetTitleName(const char* name)
@@ -258,6 +288,7 @@ void Leventure_DevelopKey::ChangedIpConfig(QString str_device, QString str_ip, Q
 
 
 }
+
 
 
 void Leventure_DevelopKey::on_btn_fresh_clicked()

@@ -1,5 +1,4 @@
-﻿  Reading Qt configuration (D:/DevTools/Qt_5.14/5.14.2/msvc2017/bin/qmake)
-  uic Leventure_DevelopKey.ui
+﻿  uic Leventure_DevelopKey.ui
   rcc Leventure_DevelopKey.qrc
   moc Leventure_DevelopKey.h
   Leventure_DevelopKey.cpp
@@ -7,4 +6,4 @@
   qrc_Leventure_DevelopKey.cpp
   moc_Leventure_DevelopKey.cpp
 qtmain.lib(qtmain_win.obj) : warning LNK4099: 未找到 PDB“”(使用“qtmain.lib(qtmain_win.obj)”或在“”中寻找)；正在链接对象，如同没有调试信息一样
-  Leventure_DevelopKey.vcxproj -> D:\Leventure\Leventure_DevelopKey\Leventure_DevelopKey\Release\Leventure_DevelopKey.exe
+  Leventure_DevelopKey.vcxproj -> D:\WorkShop\Github\Leventure_DevelopKey\Leventure_DevelopKey\Release\Leventure_DevelopKey.exe

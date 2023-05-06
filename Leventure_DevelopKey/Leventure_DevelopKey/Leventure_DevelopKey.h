@@ -2,6 +2,7 @@
 #pragma execution_character_set("utf-8")
 //Author:Leventure
 //Info:Leventure 个人开发进程钥匙，用于给我的项目打开一个
+#pragma execution_character_set("utf-8")
 #include <QtWidgets/QMainWindow>
 #include "ui_Leventure_DevelopKey.h"
 #include "qtimer.h"
@@ -15,6 +16,8 @@
 #include "qfuture.h"
 #include <QtConcurrent>
 #include "qnetworkinterface.h"
+#include "qsharedmemory.h"
+#include "qthread.h"
 #ifndef PROCESS_NAME
 #define PROCESS_NAME (0x00002000L | 0x00001000L)
 #endif
@@ -22,7 +25,7 @@
 #ifndef PROCESS_WORKING_SET_SIZE
 #define PROCESS_WORKING_SET_SIZE 0x00000001
 #endif
-
+#pragma
 class Leventure_DevelopKey : public QMainWindow
 {
     Q_OBJECT
@@ -83,7 +86,12 @@ private:
     void Add(QString strValue);
 
     void ChangedIpConfig(QString str_device,QString str_ip, QString str_netmask, QString str_gateway);
+
+    //全局共享内存，用来做当前标识
+    QSharedMemory* memory;
     Q_DISABLE_COPY(Leventure_DevelopKey)
+
+        void SetSharedMemory(QString insert);
 
 };
 
