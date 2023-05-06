@@ -12,7 +12,9 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -23,7 +25,9 @@
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -32,18 +36,17 @@ class Ui_Leventure_DevelopKeyClass
 {
 public:
     QWidget *centralWidget;
-    QLabel *label;
-    QLabel *label_2;
-    QLabel *lab_welcom;
+    QGridLayout *gridLayout;
     QGroupBox *groupBox;
     QSplitter *splitter;
     QRadioButton *rabt_DeveloperMode;
     QRadioButton *rabt_InfoMode;
     QRadioButton *rabt_CompabilityModes;
     QRadioButton *rabt_TestMode;
-    QLabel *label_3;
+    QLabel *lab_welcom;
     QTabWidget *tabWidget;
     QWidget *tab_3;
+    QGridLayout *gridLayout_2;
     QGroupBox *groupBox_2;
     QComboBox *cobox_titlenames;
     QLabel *label_4;
@@ -85,6 +88,17 @@ public:
     QLabel *label_22;
     QLabel *label_12;
     QPushButton *btn_netrecovery;
+    QWidget *tab;
+    QGridLayout *gridLayout_3;
+    QPushButton *btn_config_check;
+    QLineEdit *line_config;
+    QTableWidget *table_confirm;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QPushButton *btn_config_confrim;
+    QPlainTextEdit *txt_config;
+    QLabel *label_2;
+    QLabel *label_3;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -93,22 +107,17 @@ public:
     {
         if (Leventure_DevelopKeyClass->objectName().isEmpty())
             Leventure_DevelopKeyClass->setObjectName(QString::fromUtf8("Leventure_DevelopKeyClass"));
-        Leventure_DevelopKeyClass->resize(648, 554);
+        Leventure_DevelopKeyClass->resize(491, 589);
         centralWidget = new QWidget(Leventure_DevelopKeyClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
-        label = new QLabel(centralWidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(10, 480, 131, 16));
-        label_2 = new QLabel(centralWidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(10, 460, 141, 16));
-        lab_welcom = new QLabel(centralWidget);
-        lab_welcom->setObjectName(QString::fromUtf8("lab_welcom"));
-        lab_welcom->setGeometry(QRect(10, 10, 131, 21));
-        lab_welcom->setStyleSheet(QString::fromUtf8("color: rgb(85, 255, 127);"));
+        gridLayout = new QGridLayout(centralWidget);
+        gridLayout->setSpacing(0);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setContentsMargins(-1, -1, 0, 0);
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(150, 450, 351, 51));
+        groupBox->setMinimumSize(QSize(350, 50));
         splitter = new QSplitter(groupBox);
         splitter->setObjectName(QString::fromUtf8("splitter"));
         splitter->setGeometry(QRect(10, 20, 341, 16));
@@ -127,17 +136,25 @@ public:
         rabt_TestMode = new QRadioButton(splitter);
         rabt_TestMode->setObjectName(QString::fromUtf8("rabt_TestMode"));
         splitter->addWidget(rabt_TestMode);
-        label_3 = new QLabel(centralWidget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(530, 480, 121, 16));
+
+        gridLayout->addWidget(groupBox, 3, 1, 2, 1);
+
+        lab_welcom = new QLabel(centralWidget);
+        lab_welcom->setObjectName(QString::fromUtf8("lab_welcom"));
+        lab_welcom->setStyleSheet(QString::fromUtf8("color: rgb(85, 255, 127);"));
+
+        gridLayout->addWidget(lab_welcom, 0, 0, 1, 1);
+
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(0, 30, 511, 411));
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        gridLayout_2 = new QGridLayout(tab_3);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         groupBox_2 = new QGroupBox(tab_3);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-        groupBox_2->setGeometry(QRect(0, 10, 501, 381));
         cobox_titlenames = new QComboBox(groupBox_2);
         cobox_titlenames->setObjectName(QString::fromUtf8("cobox_titlenames"));
         cobox_titlenames->setGeometry(QRect(60, 40, 301, 22));
@@ -164,7 +181,7 @@ public:
         btn_sendmessage->setGeometry(QRect(10, 130, 41, 23));
         txt_message = new QPlainTextEdit(groupBox_2);
         txt_message->setObjectName(QString::fromUtf8("txt_message"));
-        txt_message->setGeometry(QRect(10, 160, 351, 61));
+        txt_message->setGeometry(QRect(20, 170, 351, 261));
         line_beginCode = new QLineEdit(groupBox_2);
         line_beginCode->setObjectName(QString::fromUtf8("line_beginCode"));
         line_beginCode->setGeometry(QRect(60, 130, 51, 20));
@@ -174,6 +191,9 @@ public:
         label_7 = new QLabel(groupBox_2);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setGeometry(QRect(210, 110, 54, 12));
+
+        gridLayout_2->addWidget(groupBox_2, 0, 0, 1, 1);
+
         tabWidget->addTab(tab_3, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
@@ -260,10 +280,70 @@ public:
         btn_netrecovery->setObjectName(QString::fromUtf8("btn_netrecovery"));
         btn_netrecovery->setGeometry(QRect(210, 70, 75, 23));
         tabWidget->addTab(tab_4, QString());
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        gridLayout_3 = new QGridLayout(tab);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        btn_config_check = new QPushButton(tab);
+        btn_config_check->setObjectName(QString::fromUtf8("btn_config_check"));
+
+        gridLayout_3->addWidget(btn_config_check, 0, 0, 1, 1);
+
+        line_config = new QLineEdit(tab);
+        line_config->setObjectName(QString::fromUtf8("line_config"));
+
+        gridLayout_3->addWidget(line_config, 0, 1, 1, 1);
+
+        table_confirm = new QTableWidget(tab);
+        table_confirm->setObjectName(QString::fromUtf8("table_confirm"));
+
+        gridLayout_3->addWidget(table_confirm, 2, 1, 1, 1);
+
+        widget = new QWidget(tab);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setMinimumSize(QSize(70, 0));
+        widget->setMaximumSize(QSize(70, 16777215));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        btn_config_confrim = new QPushButton(widget);
+        btn_config_confrim->setObjectName(QString::fromUtf8("btn_config_confrim"));
+        btn_config_confrim->setMinimumSize(QSize(50, 0));
+        btn_config_confrim->setMaximumSize(QSize(50, 16777215));
+
+        verticalLayout->addWidget(btn_config_confrim);
+
+        txt_config = new QPlainTextEdit(widget);
+        txt_config->setObjectName(QString::fromUtf8("txt_config"));
+        txt_config->setMinimumSize(QSize(50, 0));
+        txt_config->setMaximumSize(QSize(50, 16777215));
+
+        verticalLayout->addWidget(txt_config);
+
+
+        gridLayout_3->addWidget(widget, 1, 0, 2, 1);
+
+        tabWidget->addTab(tab, QString());
+
+        gridLayout->addWidget(tabWidget, 1, 0, 1, 2);
+
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        gridLayout->addWidget(label_2, 4, 0, 1, 1);
+
+        label_3 = new QLabel(centralWidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        gridLayout->addWidget(label_3, 3, 0, 1, 1);
+
         Leventure_DevelopKeyClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Leventure_DevelopKeyClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 648, 23));
+        menuBar->setGeometry(QRect(0, 0, 491, 23));
         Leventure_DevelopKeyClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(Leventure_DevelopKeyClass);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -274,7 +354,7 @@ public:
 
         retranslateUi(Leventure_DevelopKeyClass);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(Leventure_DevelopKeyClass);
@@ -283,15 +363,12 @@ public:
     void retranslateUi(QMainWindow *Leventure_DevelopKeyClass)
     {
         Leventure_DevelopKeyClass->setWindowTitle(QApplication::translate("Leventure_DevelopKeyClass", "Leventure_DevelopKey", nullptr));
-        label->setText(QApplication::translate("Leventure_DevelopKeyClass", "Designed by Leventure", nullptr));
-        label_2->setText(QApplication::translate("Leventure_DevelopKeyClass", "Leventure Devloper Key", nullptr));
-        lab_welcom->setText(QApplication::translate("Leventure_DevelopKeyClass", "\345\244\247\345\260\217\345\247\220\351\251\276\345\210\260\357\274\214\347\273\237\347\273\237\351\227\252\345\274\200!", nullptr));
         groupBox->setTitle(QApplication::translate("Leventure_DevelopKeyClass", "\347\250\213\345\272\217\346\250\241\345\274\217", nullptr));
         rabt_DeveloperMode->setText(QApplication::translate("Leventure_DevelopKeyClass", "\345\274\200\345\217\221\350\200\205\346\250\241\345\274\217", nullptr));
         rabt_InfoMode->setText(QApplication::translate("Leventure_DevelopKeyClass", "Info\346\250\241\345\274\217", nullptr));
         rabt_CompabilityModes->setText(QApplication::translate("Leventure_DevelopKeyClass", "\345\205\274\345\256\271\346\250\241\345\274\217", nullptr));
         rabt_TestMode->setText(QApplication::translate("Leventure_DevelopKeyClass", "\345\267\245\347\250\213\346\250\241\345\274\217", nullptr));
-        label_3->setText(QApplication::translate("Leventure_DevelopKeyClass", "Github:LeventureQys", nullptr));
+        lab_welcom->setText(QApplication::translate("Leventure_DevelopKeyClass", "\345\244\247\345\260\217\345\247\220\351\251\276\345\210\260\357\274\214\347\273\237\347\273\237\351\227\252\345\274\200!", nullptr));
         groupBox_2->setTitle(QApplication::translate("Leventure_DevelopKeyClass", "\350\260\203\350\257\225\345\267\245\345\205\267", nullptr));
         label_4->setText(QApplication::translate("Leventure_DevelopKeyClass", "\347\252\227\345\217\243\345\220\215\347\247\260", nullptr));
         btn_fresh->setText(QApplication::translate("Leventure_DevelopKeyClass", "\345\210\267\346\226\260", nullptr));
@@ -329,6 +406,11 @@ public:
         label_12->setText(QApplication::translate("Leventure_DevelopKeyClass", "\347\275\221\345\205\263", nullptr));
         btn_netrecovery->setText(QApplication::translate("Leventure_DevelopKeyClass", "\346\201\242\345\244\215\345\216\237\347\212\266", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("Leventure_DevelopKeyClass", "\347\275\221\347\273\234\345\267\245\345\205\267", nullptr));
+        btn_config_check->setText(QApplication::translate("Leventure_DevelopKeyClass", "\346\265\217\350\247\210", nullptr));
+        btn_config_confrim->setText(QApplication::translate("Leventure_DevelopKeyClass", "\347\241\256\345\256\232", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("Leventure_DevelopKeyClass", "\351\205\215\347\275\256\346\226\207\344\273\266", nullptr));
+        label_2->setText(QApplication::translate("Leventure_DevelopKeyClass", "Leventure Devloper Key", nullptr));
+        label_3->setText(QApplication::translate("Leventure_DevelopKeyClass", "Github:LeventureQys", nullptr));
     } // retranslateUi
 
 };

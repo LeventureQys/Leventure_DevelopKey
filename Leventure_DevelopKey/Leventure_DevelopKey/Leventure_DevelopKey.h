@@ -1,5 +1,4 @@
 #pragma once
-#pragma execution_character_set("utf-8")
 //Author:Leventure
 //Info:Leventure 个人开发进程钥匙，用于给我的项目打开一个
 #pragma execution_character_set("utf-8")
@@ -18,6 +17,8 @@
 #include "qnetworkinterface.h"
 #include "qsharedmemory.h"
 #include "qthread.h"
+#include "qfiledialog.h"
+#include "qlist.h"
 #ifndef PROCESS_NAME
 #define PROCESS_NAME (0x00002000L | 0x00001000L)
 #endif
@@ -64,6 +65,9 @@ private slots:
     void on_btn_ChangeNetwork_clicked();
     void on_btn_netrecovery_clicked();
     void on_rabt_TestMode_clicked();
+
+    void on_btn_config_check_clicked();
+    void on_btn_config_confrim_clicked();
 private:
 
     char* ProcessName = Q_NULLPTR;

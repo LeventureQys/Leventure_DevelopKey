@@ -186,6 +186,59 @@ void Leventure_DevelopKey::on_rabt_TestMode_clicked()
     this->SetSharedMemory("TestMode");
 }
 
+void Leventure_DevelopKey::on_btn_config_check_clicked()
+{
+    QString str = QFileDialog::getOpenFileName(this, "选择INI文件", "", "INI 文件(*.ini)");
+    QFile file(str);
+    if (!file.exists()) {
+        this->ui.table_confirm->clearContents();
+        this->ui.table_confirm->setColumnCount(1);
+
+        this->ui.table_confirm->setItem(1, 1, new QTableWidgetItem(QString("选择的文件不存在！")));
+    }
+    else {
+        this->ui.line_config->setText(str);
+        this->ui.table_confirm->setColumnCount(2);
+        QStringList headerLabels;
+        headerLabels << "Key" << "Value";
+        this->ui.table_confirm->setHorizontalHeaderLabels(headerLabels);
+
+        QSettings settings(str, QSettings::IniFormat);
+
+        QList<QString> keys = settings.allKeys();
+        this->ui.table_confirm->setRowCount(keys.size());
+        int i = 0;
+        for (auto key : keys) {
+            this->ui.table_confirm->setItem(i, 0, new QTableWidgetItem(QString(key)));
+            this->ui.table_confirm->setItem(i, 1, new QTableWidgetItem(QString(settings.value(key).toString())));
+            
+            ++i;
+        }
+    }
+}
+
+void Leventure_DevelopKey::on_btn_config_confrim_clicked()
+{
+    QFile file(this->ui.line_config->text());
+
+    if (!file.exists()) {
+        this->ui.txt_config->appendPlainText("文件不存在，请重新选择");
+        return;
+    }
+
+    QSettings settings(this->ui.line_config->text(), QSettings::IniFormat);
+    for (int i = 0; i < this->ui.table_confirm->rowCount(); ++i) {
+        QString key = this->ui.table_confirm->item(i, 0)->text();
+        QString value = this->ui.table_confirm->item(i, 1)->text();
+        settings.setValue(key, value);
+        QColor green(0, 255, 0);
+        this->ui.table_confirm->item(i, 0)->setBackgroundColor(green);
+        this->ui.table_confirm->item(i, 1)->setBackgroundColor(green);
+
+    }
+
+}
+
 void Leventure_DevelopKey::SetTitleName(const char* name)
 {
 
