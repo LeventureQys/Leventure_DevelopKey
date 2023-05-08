@@ -65,7 +65,7 @@ private slots:
     void on_rabt_TestMode_clicked();
     void on_btn_json_check_clicked();
     void on_btn_json_analyse_clicked();
-
+    void on_btn_recovery_clicked();
 
 private:
     bool save_as_json(QList<QString>& jsonStr, QString fileName);

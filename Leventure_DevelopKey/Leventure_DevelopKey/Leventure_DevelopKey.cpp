@@ -205,6 +205,40 @@ void Leventure_DevelopKey::on_btn_json_analyse_clicked()
 
 }
 
+void Leventure_DevelopKey::on_btn_recovery_clicked()
+{
+    QString path = this->ui.line_json_file->text();
+    QFile inFile(path);
+    if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+
+    QString outPath = QDir::toNativeSeparators(QFileInfo(path).path() + "/" + QFileInfo(path).completeBaseName() + "_Recovery." + QFileInfo(path).suffix());
+    // 构造输出文件路径
+
+    QFile outFile(outPath);
+    if (!outFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
+        return;
+
+    QTextStream in(&inFile);
+    QTextStream out(&outFile);
+    int id = 1;
+
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        QStringList parts = line.split("  ");
+        if (parts.size() != 2) continue;
+        QJsonObject json;
+        json["ID"] = id++;
+        json["Mileage"] = parts[0];
+        json["Time"] = parts[1];
+        out << QJsonDocument(json).toJson(QJsonDocument::Compact) << ";";
+    }
+
+    inFile.close();
+    outFile.close();
+
+}
+
 bool Leventure_DevelopKey::save_as_json(QList<QString>& jsonlist, QString fileName)
 {
     QFile file(fileName);

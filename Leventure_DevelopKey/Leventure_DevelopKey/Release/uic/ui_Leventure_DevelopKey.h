@@ -90,12 +90,13 @@ public:
     QWidget *tab;
     QPlainTextEdit *text_json;
     QLabel *label_15;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QLabel *label_14;
     QHBoxLayout *horizontalLayout;
     QLineEdit *line_json_file;
     QPushButton *btn_json_check;
+    QPushButton *btn_recovery;
     QPushButton *btn_json_analyse;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -144,7 +145,7 @@ public:
         label_3->setGeometry(QRect(530, 480, 121, 16));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(0, 30, 511, 411));
+        tabWidget->setGeometry(QRect(0, 30, 631, 411));
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         groupBox_2 = new QGroupBox(tab_3);
@@ -280,15 +281,15 @@ public:
         label_15 = new QLabel(tab);
         label_15->setObjectName(QString::fromUtf8("label_15"));
         label_15->setGeometry(QRect(20, 120, 54, 12));
-        widget = new QWidget(tab);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(10, 10, 301, 91));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(tab);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 301, 103));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label_14 = new QLabel(widget);
+        label_14 = new QLabel(layoutWidget);
         label_14->setObjectName(QString::fromUtf8("label_14"));
 
         verticalLayout->addWidget(label_14);
@@ -296,12 +297,12 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        line_json_file = new QLineEdit(widget);
+        line_json_file = new QLineEdit(layoutWidget);
         line_json_file->setObjectName(QString::fromUtf8("line_json_file"));
 
         horizontalLayout->addWidget(line_json_file);
 
-        btn_json_check = new QPushButton(widget);
+        btn_json_check = new QPushButton(layoutWidget);
         btn_json_check->setObjectName(QString::fromUtf8("btn_json_check"));
 
         horizontalLayout->addWidget(btn_json_check);
@@ -309,7 +310,12 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        btn_json_analyse = new QPushButton(widget);
+        btn_recovery = new QPushButton(layoutWidget);
+        btn_recovery->setObjectName(QString::fromUtf8("btn_recovery"));
+
+        verticalLayout->addWidget(btn_recovery);
+
+        btn_json_analyse = new QPushButton(layoutWidget);
         btn_json_analyse->setObjectName(QString::fromUtf8("btn_json_analyse"));
 
         verticalLayout->addWidget(btn_json_analyse);
@@ -387,6 +393,7 @@ public:
         label_15->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\347\273\223\346\236\234", nullptr));
         label_14->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\350\276\223\345\205\245\346\226\207\344\273\266\344\275\215\347\275\256", nullptr));
         btn_json_check->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\346\265\217\350\247\210..", nullptr));
+        btn_recovery->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\346\201\242\345\244\215", nullptr));
         btn_json_analyse->setText(QCoreApplication::translate("Leventure_DevelopKeyClass", "\350\247\243\346\236\220", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("Leventure_DevelopKeyClass", "JSON\350\247\243\346\236\220", nullptr));
     } // retranslateUi
