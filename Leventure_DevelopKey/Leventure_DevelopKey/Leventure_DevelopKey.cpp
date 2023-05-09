@@ -225,11 +225,11 @@ void Leventure_DevelopKey::on_btn_recovery_clicked()
 
     while (!in.atEnd()) {
         QString line = in.readLine();
-        QStringList parts = line.split("  ");
+        QStringList parts = line.split(" ");
         if (parts.size() != 2) continue;
         QJsonObject json;
         json["ID"] = id++;
-        json["Mileage"] = parts[0];
+        json["Mileage"] = parts[0].toDouble();
         json["Time"] = parts[1];
         out << QJsonDocument(json).toJson(QJsonDocument::Compact) << ";";
     }
@@ -258,7 +258,7 @@ bool Leventure_DevelopKey::save_as_json(QList<QString>& jsonlist, QString fileNa
             return false;
         }
         QJsonObject jsonObj = jsonDoc.object();
-        QString insert = QString::number(jsonObj.value("Mileage").toDouble(),'g',12) + QString("  ") + jsonObj.value("Time").toString();
+        QString insert = QString::number(jsonObj.value("Mileage").toDouble(),'g',12) + QString(" ") + jsonObj.value("Time").toString();
         this->ui.text_json->appendPlainText(insert);
         stream << QString(insert) << endl;
     }
